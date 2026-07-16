@@ -1,0 +1,18 @@
+name: Check Canva full-resolution cover
+
+on:
+  push:
+    paths:
+      - '.github/workflows/check-canva-full-resolution.yml'
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Canva fallback
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 'https://s3.amazonaws.com/document-export.canva.com/UBPg0/DAHPgwUBPg0/1/thumbnail/0001.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHXSTDDERN%2F20260716%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260716T000850Z&X-Amz-Expires=15165&X-Amz-Signature=d9334c74a6c2ce56421fb561bdde2b089b130470edff8519ed576f471f9819b5&X-Amz-SignedHeaders=host&response-expires=Thu%2C%2016%20Jul%202026%2004%3A21%3A35%20GMT' -o /tmp/control.png
+          file /tmp/control.png
+          identify /tmp/control.png
