@@ -1,0 +1,40 @@
+name: Import full-resolution approved Notion covers
+
+on:
+  push:
+    paths:
+      - '.github/workflows/import-full-resolution-notion-covers.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download full-resolution Canva renders
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p notion-studio/photo-covers-hires
+          curl -fL --retry 3 --retry-all-errors 'https://design-manipulation-download.canva.com/78381220-f85a-498e-adcd-2b572cf03c91/0000-6778427079755706367.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHWASWGM4Q%2F20260715%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260715T140425Z&X-Amz-Expires=55044&X-Amz-Signature=a255515014483b9deeb26460dd3beb4409ffc156d63fa0a806f443d5e38a68bd&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Thu%2C%2016%20Jul%202026%2005%3A21%3A49%20GMT' -o notion-studio/photo-covers-hires/control.png
+          curl -fL --retry 3 --retry-all-errors 'https://design-manipulation-download.canva.com/e47205a4-4ff6-4240-a329-8d954ee5ee74/0000-6735642879926291428.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHWASWGM4Q%2F20260716%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260716T010341Z&X-Amz-Expires=15746&X-Amz-Signature=5e2657b53c7236f27dda1a2461837ecab54fc282cd3b4d8a9825391581906150&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Thu%2C%2016%20Jul%202026%2005%3A26%3A07%20GMT' -o notion-studio/photo-covers-hires/private.png
+          curl -fL --retry 3 --retry-all-errors 'https://design-manipulation-download.canva.com/372d3f20-f5b1-461a-af7e-89e7c0c4e95b/0000-6778427076174086176.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHWASWGM4Q%2F20260715%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260715T181833Z&X-Amz-Expires=39961&X-Amz-Signature=419c24781ac3aa66a02d76079e747149c3f39fab1281a8eb9aa7cee346cf0021&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Thu%2C%2016%20Jul%202026%2005%3A24%3A34%20GMT' -o notion-studio/photo-covers-hires/roadmap.png
+          curl -fL --retry 3 --retry-all-errors 'https://design-manipulation-download.canva.com/8766d3be-8803-43d4-a574-d259a435f559/0000-1849237287309192694.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHWASWGM4Q%2F20260715%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260715T153811Z&X-Amz-Expires=49380&X-Amz-Signature=937dfbdecc00f5f9efd328bd64a12bf0f579c9157ee4e7ded40aaf4a8b532830&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Thu%2C%2016%20Jul%202026%2005%3A21%3A11%20GMT' -o notion-studio/photo-covers-hires/qa.png
+          curl -fL --retry 3 --retry-all-errors 'https://design-manipulation-download.canva.com/5ae100e8-0f72-4ba6-8f34-813d40ad1242/0000-6735642882324895294.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHWASWGM4Q%2F20260715%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260715T213739Z&X-Amz-Expires=27109&X-Amz-Signature=d0bbc19ceeb30c8cbed90b4a2ec04228538ad91cf52aa39bd2a43a245d6fd8ea&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Thu%2C%2016%20Jul%202026%2005%3A09%3A28%20GMT' -o notion-studio/photo-covers-hires/website.png
+          curl -fL --retry 3 --retry-all-errors 'https://design-manipulation-download.canva.com/b740b34a-c3bc-4ab1-b4e6-0b4be583e31d/0000-1849237285305751410.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHWASWGM4Q%2F20260715%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260715T104642Z&X-Amz-Expires=64183&X-Amz-Signature=710ae678aff198446c5677c7cd60a831f13ee444de0b95be34b823b62722d13f&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Thu%2C%2016%20Jul%202026%2004%3A36%3A25%20GMT' -o notion-studio/photo-covers-hires/teacher.png
+          curl -fL --retry 3 --retry-all-errors 'https://design-manipulation-download.canva.com/2ce49b6c-8871-442d-8571-f458fc9daccd/0000-1849237285765541817.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHWASWGM4Q%2F20260716%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260716T001447Z&X-Amz-Expires=16147&X-Amz-Signature=4c8c079e92c1081ca71804570153a157c8980b9b2e41d2273e59fa351fabc86c&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Thu%2C%2016%20Jul%202026%2004%3A43%3A54%20GMT' -o notion-studio/photo-covers-hires/pkm.png
+          for image in notion-studio/photo-covers-hires/*.png; do
+            dimensions=$(identify -format '%wx%h' "$image")
+            echo "$image: $dimensions"
+            test "$dimensions" = '1800x600'
+          done
+      - name: Commit full-resolution assets
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add notion-studio/photo-covers-hires/*.png
+          git commit -m 'Add full-resolution approved Notion covers'
+          git push
