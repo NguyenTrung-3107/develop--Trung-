@@ -1,0 +1,52 @@
+name: Import approved Notion photo covers
+
+on:
+  push:
+    paths:
+      - '.github/workflows/import-approved-notion-covers.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  import-covers:
+    runs-on: ubuntu-latest
+    env:
+      CONTROL_URL: 'https://media.canva.com/v2/document-image/hash:902559802/height:258/id:DAHPgwUBPg0/type:B/width:774?brand=BAGZzmRaEeY&csig=AAAAAAAAAAAAAAAAAAAAAIo5bhCvGeak5W0Nl8_jv5g8rS00nYT6x_m3NcDT66R2&exp=1784174584&fallback=https%3A%2F%2Fs3.amazonaws.com%2Fdocument-export.canva.com%2FUBPg0%2FDAHPgwUBPg0%2F1%2Fthumbnail%2F0001.png%3FX-Amz-Algorithm%3DAWS4-HMAC-SHA256%26X-Amz-Credential%3DAKIAQYCGKMUHXSTDDERN%252F20260716%252Fus-east-1%252Fs3%252Faws4_request%26X-Amz-Date%3D20260716T000850Z%26X-Amz-Expires%3D14054%26X-Amz-Signature%3D21930ff0f2423378adf428210d8aa85f2d46b9b6dc0a2d1d911904e4b7c9e2a8%26X-Amz-SignedHeaders%3Dhost%26response-expires%3DThu%252C%252016%2520Jul%25202026%252004%253A03%253A04%2520GMT&osig=AAAAAAAAAAAAAAAAAAAAAH6FLQ4_MrxLwAJrgZZ8m-kYjH255S0K6YNWRhw9d6mX&page=1&signed=brand%2Cfallback%2Cpage%2Cversion&signer=document-rpc&version=1'
+      PRIVATE_URL: 'https://media.canva.com/v2/document-image/hash:1060941718/height:258/id:DAHPg95LRrs/type:B/width:774?brand=BAGZzmRaEeY&csig=AAAAAAAAAAAAAAAAAAAAAFxawaJ7QkQ81q0NDwvR7BDFR47ExxOg6ytnksHaCKg1&exp=1784174664&fallback=https%3A%2F%2Fs3.amazonaws.com%2Fdocument-export.canva.com%2F5LRrs%2FDAHPg95LRrs%2F1%2Fthumbnail%2F0001.png%3FX-Amz-Algorithm%3DAWS4-HMAC-SHA256%26X-Amz-Credential%3DAKIAQYCGKMUHXSTDDERN%252F20260715%252Fus-east-1%252Fs3%252Faws4_request%26X-Amz-Date%3D20260715T164609Z%26X-Amz-Expires%3D40695%26X-Amz-Signature%3Dd9820eb2d28549e8ce6a5bf07e3dce656b96b7a35a1505b572ad960c7c462713%26X-Amz-SignedHeaders%3Dhost%26response-expires%3DThu%252C%252016%2520Jul%25202026%252004%253A04%253A24%2520GMT&osig=AAAAAAAAAAAAAAAAAAAAADrh6Px3zg-Y8V8cMQ6n7dahDSBcH_sC1yV8-I-acaUX&page=1&signed=brand%2Cfallback%2Cpage%2Cversion&signer=document-rpc&version=1'
+      ROADMAP_URL: 'https://media.canva.com/v2/document-image/hash:-1842765218/height:258/id:DAHPgwnWHRY/type:B/width:774?brand=BAGZzmRaEeY&csig=AAAAAAAAAAAAAAAAAAAAAPKcuUKtfYSKx6-POd5RsZ-wL6DvVvYhisrq8YUGBEc7&exp=1784174700&fallback=https%3A%2F%2Fs3.amazonaws.com%2Fdocument-export.canva.com%2FnWHRY%2FDAHPgwnWHRY%2F1%2Fthumbnail%2F0001.png%3FX-Amz-Algorithm%3DAWS4-HMAC-SHA256%26X-Amz-Credential%3DAKIAQYCGKMUHXSTDDERN%252F20260715%252Fus-east-1%252Fs3%252Faws4_request%26X-Amz-Date%3D20260715T103910Z%26X-Amz-Expires%3D62750%26X-Amz-Signature%3Dc026df27661017f80e6d2f8b1ac106eaf2affafc4ea2003d7a5ca69347dc1879%26X-Amz-SignedHeaders%3Dhost%26response-expires%3DThu%252C%252016%2520Jul%25202026%252004%253A05%253A00%2520GMT&osig=AAAAAAAAAAAAAAAAAAAAAOrWe_xZCNNOgQ2WIHCB4m-7WcBKI3aHBEQAdNUZ7M2z&page=1&signed=brand%2Cfallback%2Cpage%2Cversion&signer=document-rpc&version=1'
+      QA_URL: 'https://media.canva.com/v2/document-image/hash:-1382212002/height:258/id:DAHPg5lWA-4/type:B/width:774?brand=BAGZzmRaEeY&csig=AAAAAAAAAAAAAAAAAAAAAAgA1Ci03UBdoz-XonjZtMqyyVAhc0IParmeghm0bqBo&exp=1784174732&fallback=https%3A%2F%2Fs3.amazonaws.com%2Fdocument-export.canva.com%2FlWA-4%2FDAHPg5lWA-4%2F1%2Fthumbnail%2F0001.png%3FX-Amz-Algorithm%3DAWS4-HMAC-SHA256%26X-Amz-Credential%3DAKIAQYCGKMUHXSTDDERN%252F20260715%252Fus-east-1%252Fs3%252Faws4_request%26X-Amz-Date%3D20260715T065719Z%26X-Amz-Expires%3D76093%26X-Amz-Signature%3D90a4e0b35d59bb502d70b515dc1a9872840922258053b458b716cc6b3745d71c%26X-Amz-SignedHeaders%3Dhost%26response-expires%3DThu%252C%252016%2520Jul%25202026%252004%253A05%253A32%2520GMT&osig=AAAAAAAAAAAAAAAAAAAAAP4LM5P5d83lM0gP5ZpqgihYdSqUIYP74Nyim4R704qw&page=1&signed=brand%2Cfallback%2Cpage%2Cversion&signer=document-rpc&version=1'
+      WEBSITE_URL: 'https://media.canva.com/v2/document-image/hash:-1721421340/height:258/id:DAHPg3dZBig/type:B/width:774?brand=BAGZzmRaEeY&csig=AAAAAAAAAAAAAAAAAAAAAKB6oqwRkbkzanWZMM_JRfON7ILxvMwCyl8JKfWTs-3K&exp=1784174765&fallback=https%3A%2F%2Fs3.amazonaws.com%2Fdocument-export.canva.com%2FdZBig%2FDAHPg3dZBig%2F1%2Fthumbnail%2F0001.png%3FX-Amz-Algorithm%3DAWS4-HMAC-SHA256%26X-Amz-Credential%3DAKIAQYCGKMUHXSTDDERN%252F20260715%252Fus-east-1%252Fs3%252Faws4_request%26X-Amz-Date%3D20260715T051035Z%26X-Amz-Expires%3D82530%26X-Amz-Signature%3Dd1b909c5adfd4f4ed2463934bc7b8b3f8534085f3f9eddae85ae85dfa453bb2c%26X-Amz-SignedHeaders%3Dhost%26response-expires%3DThu%252C%252016%2520Jul%25202026%252004%253A06%253A05%2520GMT&osig=AAAAAAAAAAAAAAAAAAAAAJlq5aI5yTp5v1gPoemVDa2N7o6jW5bzwGZqiv_OB8H7&page=1&signed=brand%2Cfallback%2Cpage%2Cversion&signer=document-rpc&version=1'
+      TEACHER_URL: 'https://media.canva.com/v2/document-image/hash:1035376240/height:258/id:DAHPg8pePnM/type:B/width:774?brand=BAGZzmRaEeY&csig=AAAAAAAAAAAAAAAAAAAAADzygCxacuNin1txmodDjB3EtQdod8vlH0xv3Yajg81Q&exp=1784174801&fallback=https%3A%2F%2Fs3.amazonaws.com%2Fdocument-export.canva.com%2FpePnM%2FDAHPg8pePnM%2F1%2Fthumbnail%2F0001.png%3FX-Amz-Algorithm%3DAWS4-HMAC-SHA256%26X-Amz-Credential%3DAKIAQYCGKMUHXSTDDERN%252F20260715%252Fus-east-1%252Fs3%252Faws4_request%26X-Amz-Date%3D20260715T191002Z%26X-Amz-Expires%3D32199%26X-Amz-Signature%3D1fdde536ef4df3171336e5a77095a16271dd2bb8b031808eb80c66c40c080985%26X-Amz-SignedHeaders%3Dhost%26response-expires%3DThu%252C%252016%2520Jul%25202026%252004%253A06%253A41%2520GMT&osig=AAAAAAAAAAAAAAAAAAAAANkX6bOo38b3ew3tTfiAZ-MViQ2MlWJjbuOX3V1DuLAa&page=1&signed=brand%2Cfallback%2Cpage%2Cversion&signer=document-rpc&version=1'
+      PKM_URL: 'https://media.canva.com/v2/document-image/hash:-1368343666/height:258/id:DAHPg6MT3eo/type:B/width:774?brand=BAGZzmRaEeY&csig=AAAAAAAAAAAAAAAAAAAAAFelXqOPak1Cpx-94Fgkk7XgUxIX69lGK2iCibMRseHT&exp=1784174832&fallback=https%3A%2F%2Fs3.amazonaws.com%2Fdocument-export.canva.com%2FMT3eo%2FDAHPg6MT3eo%2F1%2Fthumbnail%2F0001.png%3FX-Amz-Algorithm%3DAWS4-HMAC-SHA256%26X-Amz-Credential%3DAKIAQYCGKMUHXSTDDERN%252F20260715%252Fus-east-1%252Fs3%252Faws4_request%26X-Amz-Date%3D20260715T123753Z%26X-Amz-Expires%3D55759%26X-Amz-Signature%3D3da7417c5a9bb72c37a6d6e2f14c24ea509f6fdf75087b780837378bc4865178%26X-Amz-SignedHeaders%3Dhost%26response-expires%3DThu%252C%252016%2520Jul%25202026%252004%253A07%253A12%2520GMT&osig=AAAAAAAAAAAAAAAAAAAAAL9p4wHDrTpaVgA_bRZiTEDI62QsMCMZ-dNAKBC9pAnf&page=1&signed=brand%2Cfallback%2Cpage%2Cversion&signer=document-rpc&version=1'
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Download approved covers
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p notion-studio/photo-covers
+          curl -fL --retry 3 --retry-all-errors "$CONTROL_URL" -o notion-studio/photo-covers/control.jpg
+          curl -fL --retry 3 --retry-all-errors "$PRIVATE_URL" -o notion-studio/photo-covers/private.jpg
+          curl -fL --retry 3 --retry-all-errors "$ROADMAP_URL" -o notion-studio/photo-covers/roadmap.jpg
+          curl -fL --retry 3 --retry-all-errors "$QA_URL" -o notion-studio/photo-covers/qa.jpg
+          curl -fL --retry 3 --retry-all-errors "$WEBSITE_URL" -o notion-studio/photo-covers/website.jpg
+          curl -fL --retry 3 --retry-all-errors "$TEACHER_URL" -o notion-studio/photo-covers/teacher.jpg
+          curl -fL --retry 3 --retry-all-errors "$PKM_URL" -o notion-studio/photo-covers/pkm.jpg
+          file notion-studio/photo-covers/*.jpg
+
+      - name: Commit stable cover assets
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add notion-studio/photo-covers/*.jpg
+          if git diff --cached --quiet; then
+            echo "No new cover files to commit."
+          else
+            git commit -m "Add approved photorealistic Notion cover assets"
+            git push
+          fi
