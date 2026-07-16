@@ -1,0 +1,1 @@
+Stable 1800x600 Notion cover assets. Binary image files are committed through the Git data API.
